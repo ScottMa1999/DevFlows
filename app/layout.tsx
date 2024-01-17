@@ -6,8 +6,8 @@ import type { Metadata } from "next";
 // Clerk Authentication
 import { ClerkProvider } from "@clerk/nextjs";
 
-// Components
-import Header from "@/components/Header";
+// hooks
+import { ThemeProvider } from "../contexts/ThemeProvider";
 
 // Fonts
 // eslint-disable-next-line camelcase
@@ -50,10 +50,11 @@ export default function RootLayout({
       }}
     >
       <html lang="en">
-        <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
-          <Header />
-          {children}
-        </body>
+        <ThemeProvider>
+          <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
+            {children}
+          </body>
+        </ThemeProvider>
       </html>
     </ClerkProvider>
   );

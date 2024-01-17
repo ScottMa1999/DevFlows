@@ -6,11 +6,7 @@ import { SignIn } from "@clerk/nextjs";
 const SignInPage = () => {
   return (
     <section className="flex min-h-screen w-full items-center justify-center">
-      <SignIn
-        path="/sign-in"
-        redirectUrl="/ask-question"
-        signUpUrl="/sign-up"
-      />
+      <SignIn path="/sign-in" redirectUrl="/" signUpUrl="/sign-up" />
     </section>
   );
 };

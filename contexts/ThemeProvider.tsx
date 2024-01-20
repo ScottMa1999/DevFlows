@@ -2,7 +2,7 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 
 // utilities
-import { determineLightMode } from "@/utility/determinMode";
+// import { determineLightMode } from "@/utility/determinMode";
 
 // types
 type ThemeProviderPropType = {
@@ -22,14 +22,15 @@ export const ThemeContext = createContext<ThemeContextType>(
 // context provider
 export function ThemeProvider({ children }: ThemeProviderPropType) {
   // states
-  const [mode, setMode] = useState<string>("");
+  const [mode, setMode] = useState<string>("light");
 
   // functionalities
   const handleThemeChange = () => {
     // window.matchMedia("(prefers-color-scheme: dark)").matches
     if (
       localStorage.theme === "dark" ||
-      (!("theme" in localStorage) && !determineLightMode())
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
     ) {
       setMode("dark");
       document.documentElement.classList.add("dark");
@@ -42,6 +43,7 @@ export function ThemeProvider({ children }: ThemeProviderPropType) {
   // effects;
   useEffect(() => {
     handleThemeChange();
+    console.log(mode);
   }, [mode]);
 
   return (

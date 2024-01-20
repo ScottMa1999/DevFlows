@@ -1,6 +1,13 @@
 // utility
 import { determineLightMode } from "@/utility/determinMode";
 
+// types
+export type themesType = {
+  value: string;
+  label: string;
+  icon: string;
+};
+
 export const themesIcons = [
   { value: "light", label: "Light", icon: "/assets/icons/sun.svg" },
   { value: "dark", label: "Dark", icon: "/assets/icons/moon.svg" },
@@ -12,9 +19,3 @@ export const themesIcons = [
     }`,
   },
 ];
-
-export type themesType = {
-  value: string;
-  label: string;
-  icon: string;
-};

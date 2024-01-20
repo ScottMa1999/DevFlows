@@ -5,10 +5,12 @@ import { SignedIn, UserButton } from "@clerk/nextjs";
 // components
 import ThemeIcon from "./ThemeIcon";
 import MobileNav from "./MobileNav";
+import GlobalSearch from "../search/GlobalSearch";
 
 const NavBar = () => {
   return (
     <nav className="flex-between background-light900_dark200 fixed z-50 w-full gap-5 p-6 shadow-light-300 dark:shadow-none sm:px-12">
+      {/* Logo & Name */}
       <Link href="/" className="flex items-center gap-1">
         <Image
           src="/assets/images/site-logo.svg"
@@ -21,8 +23,11 @@ const NavBar = () => {
         </p>
       </Link>
       {/* GlobalSearchComponent */}
+      <GlobalSearch />
       <div className="flex-between gap-5">
+        {/* ThemeIcon component */}
         <ThemeIcon />
+        {/* UserInfo component */}
         <SignedIn>
           <UserButton
             afterSignOutUrl="/"
@@ -36,6 +41,7 @@ const NavBar = () => {
             }}
           />
         </SignedIn>
+        {/* MobileSideBar hamburger component */}
         <MobileNav />
       </div>
     </nav>

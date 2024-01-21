@@ -22,7 +22,7 @@ export default function GlobalSearch() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Search"
-          className="paragraph-regular no-focus placeholder background-light800_darkgradient border-none shadow-none outline-none"
+          className="paragraph-regular no-focus placeholder background-light800_darkgradient border-none shadow-none outline-none dark:text-white"
         />
       </div>
     </section>

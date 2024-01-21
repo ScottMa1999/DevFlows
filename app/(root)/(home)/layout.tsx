@@ -3,10 +3,12 @@ import React from "react";
 // components
 import NavBar from "../../../components/shared/navbar/NavBar";
 import LeftSideBar from "@/components/shared/leftsidebar/LeftSidebar";
+import RightSidebar from "@/components/shared/rightsidebar/RightSidebar";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="background-light850_dark100 relative">
+      {/* NavBar */}
       <NavBar />
       <div className="flex">
         {/* LeftSideBar */}
@@ -15,6 +17,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="mx-auto w-full max-w-5xl">{children}</div>
         </section>
         {/* RightSideBar */}
+        <RightSidebar />
       </div>
     </main>
   );

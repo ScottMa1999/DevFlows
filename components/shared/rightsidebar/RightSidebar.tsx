@@ -1,6 +1,7 @@
 import { topQuestions, popularTags } from "@/constants/SidebarLinks";
 import Link from "next/link";
 import Image from "next/image";
+import RenderTag from "../RenderTag";
 
 export default function RightSidebar() {
   return (
@@ -40,15 +41,15 @@ export default function RightSidebar() {
         <div className="mt-7 flex flex-col gap-4">
           {popularTags?.map(({ id, topic, posts, route }) => (
             <section key={id}>
-              <Link
-                href={route}
-                className="group flex items-center justify-between gap-2"
-              >
-                <div className="subtle-medium background-light800_dark300 text-light400_light500 inline-flex items-center rounded-md border border-none border-transparent bg-slate-900 px-4 py-2 text-xs font-semibold uppercase shadow transition-colors  hover:bg-slate-900/80 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 dark:border-slate-800 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/80 dark:focus:ring-slate-300">
-                  {topic}
-                </div>
-                <p className="small-medium text-dark500_light700">{`${posts}+`}</p>
-              </Link>
+              <RenderTag
+                _id={id}
+                name={topic}
+                totalQuestions={posts}
+                showCount={true}
+                showActive={false}
+                useLink={true}
+                className="flex w-full justify-between"
+              />
             </section>
           ))}
         </div>

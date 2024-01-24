@@ -43,7 +43,6 @@ export function ThemeProvider({ children }: ThemeProviderPropType) {
   // effects;
   useEffect(() => {
     handleThemeChange();
-    console.log(mode);
   }, [mode]);
 
   return (

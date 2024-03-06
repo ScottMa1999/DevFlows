@@ -12,10 +12,12 @@ import RenderTag from "@/components/shared/RenderTag";
 import LocalSearch from "@/components/shared/search/LocalSearch";
 import FilterComponent from "@/components/shared/FilterComponent";
 import QuestionCard from "@/components/shared/QuestionCard";
+import NoResult from "@/components/shared/NoResult";
 
 const Home = () => {
   // states
   const [filter, setFilter] = useState<string | null>("");
+  const hasQuestionCard: boolean = QuestionCards.length > 0;
 
   // effects
   useEffect(() => {
@@ -35,21 +37,23 @@ const Home = () => {
       </section>
 
       {/* Local Search Cpmponent */}
-      <section className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
-        <LocalSearch
-          route="/"
-          iconPosition="left"
-          imgSrc="/assets/icons/search.svg"
-          placeholder="Search for questions"
-          otherClasses="flex-1"
-        />
-        {/* Filter components for small devices */}
-        <FilterComponent
-          className="max-md:flex md:hidden"
-          placeholder="Select a Filter"
-          content={HomePageFilters}
-        />
-      </section>
+      {hasQuestionCard && (
+        <section className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
+          <LocalSearch
+            route="/"
+            iconPosition="left"
+            imgSrc="/assets/icons/search.svg"
+            placeholder="Search for questions"
+            otherClasses="flex-1"
+          />
+          {/* Filter components for small devices */}
+          <FilterComponent
+            className="max-md:flex md:hidden"
+            placeholder="Select a Filter"
+            content={HomePageFilters}
+          />
+        </section>
+      )}
 
       {/* Filter components */}
       <section className="mt-10 hidden flex-wrap gap-3 md:flex">
@@ -71,20 +75,28 @@ const Home = () => {
       </section>
 
       {/* Question card components */}
-      <section className="mt-10 flex w-full flex-col gap-6">
-        {QuestionCards?.map((card) => (
-          <QuestionCard
-            title={card.title}
-            key={card._id}
-            tags={card.tags}
-            author={card.author}
-            authorImgSrc=""
-            upvotes={card.upvotes}
-            answers={card.answers}
-            views={card.views}
-            createdAt={card.createdAt}
-          />
-        ))}
+      <section>
+        {hasQuestionCard ? (
+          <section className="mt-10 flex w-full flex-col gap-6">
+            {QuestionCards?.map((card) => (
+              <QuestionCard
+                title={card.title}
+                key={card._id}
+                tags={card.tags}
+                author={card.author}
+                authorImgSrc=""
+                upvotes={card.upvotes}
+                answers={card.answers}
+                views={card.views}
+                createdAt={card.createdAt}
+              />
+            ))}
+          </section>
+        ) : (
+          <section className="mt-10 flex w-full flex-col items-center justify-center">
+            <NoResult />
+          </section>
+        )}
       </section>
     </>
   );

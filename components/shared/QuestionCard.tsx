@@ -34,11 +34,11 @@ export default function QuestionCard({
       {/* Question Titles */}
       <div className="flex flex-col-reverse items-start justify-between gap-5 sm:flex-row">
         <div>
-          <p className="subtle-regular text-dark400_light700 line-clamp-1 flex sm:hidden">
+          {/* <p className="subtle-regular text-dark400_light700 line-clamp-1 flex sm:hidden">
             {timeFormatter(createdAt)}
-          </p>
+          </p> */}
 
-          {/* need to wrk on the question id! */}
+          {/* need to work on the question id! */}
           <Link
             href="/question/id"
             className="sm:h3-semibold base-semibold text-dark200_light900 line-clamp-1 flex-1"
@@ -71,10 +71,10 @@ export default function QuestionCard({
             loading="lazy"
             className="rounded-full object-contain"
           />
-          <p className="body-medium text-dark400_light700 flex items-center gap-1">
+          <p className="body-medium text-dark400_light700 flex items-center gap-3">
             {author}
             <span className="small-regular line-clamp-1 font-light max-sm:hidden">
-              * asked {timeFormatter(createdAt)}
+              asked {timeFormatter(createdAt)}
             </span>
           </p>
         </Link>

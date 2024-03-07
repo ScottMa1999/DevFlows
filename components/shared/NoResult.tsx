@@ -5,7 +5,24 @@ import { Button } from "../ui/button";
 // context
 import { useThemeProvider } from "@/contexts/ThemeProvider";
 
-export default function NoResult() {
+// types
+type NoResultPropsTypes = {
+  imgSrc: { light: string; dark: string };
+  imgAlt: string;
+  title: string;
+  description: string;
+  hasButton: boolean;
+  buttonRef: string;
+};
+
+export default function NoResult({
+  imgSrc,
+  imgAlt,
+  title,
+  description,
+  hasButton,
+  buttonRef,
+}: NoResultPropsTypes) {
   // theme provider
   const { mode } = useThemeProvider();
 
@@ -14,16 +31,16 @@ export default function NoResult() {
       {/* Illustration Icon */}
       {mode === "light" ? (
         <Image
-          src="/assets/images/light-illustration.png"
-          alt="illustration image"
+          src={imgSrc.light}
+          alt={imgAlt}
           width={351}
           height={351}
           quality={100}
         />
       ) : (
         <Image
-          src="/assets/images/dark-illustration.png"
-          alt="illustration image"
+          src={imgSrc.dark}
+          alt={imgAlt}
           width={351}
           height={351}
           quality={100}
@@ -32,24 +49,19 @@ export default function NoResult() {
 
       <section className="mt-[30px] flex w-full flex-col items-center justify-center gap-[14px] text-center">
         {/* Questions texts */}
-        <h1 className="h2-bold text-dark200_light900">
-          There&apos;s no question to show
-        </h1>
-        <p>
-          Be the first to break the silence 🚀 Ask a Question and kickstart the
-          discussion. Our query could be the next big thing others learn from.
-          Get involved!
+        <h1 className="h2-bold text-dark200_light900">{title}</h1>
+        <p className="body-regular text-dark500_light700 max-w-md">
+          {description}
         </p>
 
         {/* Ask a Question Button */}
-        <Link
-          href="/ask-question"
-          className="flex justify-center max-sm:w-full"
-        >
-          <Button className="primary-gradient inline-flex h-9 min-h-[46px] items-center justify-center rounded-md bg-slate-900 px-8 py-3 text-sm font-medium !text-light-900 shadow transition-colors hover:bg-slate-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 dark:focus-visible:ring-slate-300">
-            Ask a Question
-          </Button>
-        </Link>
+        {hasButton && (
+          <Link href={buttonRef} className="flex justify-center max-sm:w-full">
+            <Button className="primary-gradient inline-flex h-9 min-h-[46px] items-center justify-center rounded-md bg-slate-900 px-8 py-3 text-sm font-medium !text-light-900 shadow transition-colors hover:bg-slate-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 dark:focus-visible:ring-slate-300">
+              Ask a Question
+            </Button>
+          </Link>
+        )}
       </section>
     </section>
   );

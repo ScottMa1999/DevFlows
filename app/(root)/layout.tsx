@@ -1,7 +1,7 @@
 import React from "react";
 
 // components
-import NavBar from "../../../components/shared/navbar/NavBar";
+import NavBar from "../../components/shared/navbar/NavBar";
 import LeftSideBar from "@/components/shared/leftsidebar/LeftSidebar";
 import RightSidebar from "@/components/shared/rightsidebar/RightSidebar";
 

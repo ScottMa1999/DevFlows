@@ -25,7 +25,7 @@ export const QuestionCards: QuestionType[] = [
   //   ],
   //   author: "John Doe",
   //   upvotes: 10,
-  //   views: 100,
+  //   views: 500000,
   //   answers: 2,
   //   createdAt: "2021-09-01T12:00:00.000Z",
   //   authorImgSrc:

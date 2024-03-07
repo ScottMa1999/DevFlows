@@ -3,7 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 // component
-import RenderTag from "./RenderTag";
+import RenderTag from "../RenderTag";
+import Metric from "../Metric";
 
 // util
 import timeFormatter from "@/utility/timeFormatter";
@@ -82,48 +83,31 @@ export default function QuestionCard({
         {/* Upvotes answers and views */}
         <div className="flex items-center gap-3 max-sm:flex-wrap max-sm:justify-start">
           {/* Upvotes */}
-          <div className="flex-center flex-wrap gap-1">
-            <Image
-              src="/assets/icons/like.svg"
-              alt="upvote icon"
-              width={16}
-              height={16}
-              className="object-contain"
-            />
-            <p className="small-medium text-dark400_light800 flex items-center gap-1">
-              {upvotes}{" "}
-              <span className="small-regular line-clamp-1 ">Vote</span>
-            </p>
-          </div>
+          <Metric
+            imgUrl="/assets/icons/like.svg"
+            alt="upvote icon"
+            value={upvotes}
+            title="Vote"
+            textStyles="small-medium text-dark400_light800"
+          />
 
           {/* Answers */}
-          <div className="flex-center flex-wrap gap-1">
-            <Image
-              src="/assets/icons/message.svg"
-              alt="message icon"
-              width={16}
-              height={16}
-              className="object-contain"
-            />
-            <p className="small-medium text-dark400_light800 flex items-center gap-1">
-              {answers}{" "}
-              <span className="small-regular line-clamp-1 ">Answers</span>
-            </p>
-          </div>
+          <Metric
+            imgUrl="/assets/icons/message.svg"
+            alt="message icon"
+            value={answers}
+            title="Answers"
+            textStyles="small-medium text-dark400_light800"
+          />
 
           {/* Views */}
-          <div className="flex-center flex-wrap gap-1">
-            <Image
-              src="/assets/icons/eye.svg"
-              alt="view icon"
-              width={16}
-              height={16}
-              className="object-contain"
-            />
-            <p className="small-medium text-dark400_light800 flex items-center gap-1">
-              {views} <span className="small-regular line-clamp-1 ">Views</span>
-            </p>
-          </div>
+          <Metric
+            imgUrl="/assets/icons/eye.svg"
+            alt="view icon"
+            value={views}
+            title="Views"
+            textStyles="small-medium text-dark400_light800"
+          />
         </div>
       </div>
     </section>

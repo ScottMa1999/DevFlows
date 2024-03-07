@@ -1,28 +1,27 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 // constants
 import { HomePageFilters } from "@/constants/Filter";
-import { QuestionCards } from "@/constants/Questions";
+import { QuestionCards as QuestionCardsContent } from "@/constants/Questions";
 
 // components
 import RenderTag from "@/components/shared/RenderTag";
 import LocalSearch from "@/components/shared/search/LocalSearch";
 import FilterComponent from "@/components/shared/FilterComponent";
-import QuestionCard from "@/components/shared/QuestionCard";
+import QuestionCards from "@/components/shared/card/QuestionCards";
 import NoResult from "@/components/shared/NoResult";
 
 const Home = () => {
   // states
   const [filter, setFilter] = useState<string | null>("");
-  const hasQuestionCard: boolean = QuestionCards.length > 0;
-
-  // effects
-  useEffect(() => {
-    console.log(filter);
-  }, [filter]);
+  const hasQuestionCard: boolean = QuestionCardsContent.length > 0;
+  const imageSrcSets = {
+    light: "/assets/images/light-illustration.png",
+    dark: "/assets/images/dark-illustration.png",
+  };
 
   return (
     <>
@@ -75,27 +74,20 @@ const Home = () => {
       </section>
 
       {/* Question card components */}
-      <section>
+      <section className="flex w-full items-center justify-center">
         {hasQuestionCard ? (
-          <section className="mt-10 flex w-full flex-col gap-6">
-            {QuestionCards?.map((card) => (
-              <QuestionCard
-                title={card.title}
-                key={card._id}
-                tags={card.tags}
-                author={card.author}
-                authorImgSrc=""
-                upvotes={card.upvotes}
-                answers={card.answers}
-                views={card.views}
-                createdAt={card.createdAt}
-              />
-            ))}
-          </section>
+          <QuestionCards />
         ) : (
-          <section className="mt-10 flex w-full flex-col items-center justify-center">
-            <NoResult />
-          </section>
+          <NoResult
+            imgSrc={imageSrcSets}
+            imgAlt="illustration images"
+            title="There's no question to show"
+            description="Be the first to break the silence 🚀 Ask a Question and kickstart the
+            discussion. Our query could be the next big thing others learn from.
+            Get involved!"
+            hasButton={true}
+            buttonRef="/ask-question"
+          />
         )}
       </section>
     </>
